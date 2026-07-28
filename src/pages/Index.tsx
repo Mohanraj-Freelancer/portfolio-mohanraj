@@ -13,6 +13,7 @@ import { Footer } from '@/components/Footer';
 import { CustomCursor } from '@/components/CustomCursor';
 import { Preloader } from '@/components/Preloader';
 import { ScrollProgress } from '@/components/ScrollProgress';
+import { AmbientBackground } from '@/components/AmbientBackground';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,10 +26,11 @@ const Index = () => {
 
       <div className="min-h-screen bg-[#FFFFFF] dark:bg-[#000000] text-[#1D1D1F] dark:text-[#F5F5F7] relative selection:bg-[#0071E3] selection:text-white">
         <ScrollProgress />
+        <AmbientBackground />
         <CustomCursor />
         <Header />
         
-        <main>
+        <main className="relative z-10">
           <HeroSection />
           <AboutSection />
           <ExperienceSection />

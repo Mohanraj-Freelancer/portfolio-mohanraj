@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Github, Linkedin, Send, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Send, Sparkles, CheckCircle2, Briefcase } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export const ContactSection = () => {
@@ -146,12 +146,23 @@ export const ContactSection = () => {
                     <Github size={20} />
                   </a>
                   <a
-                    href="https://linkedin.com/in/mohan-raj-698756224"
+                    href="https://www.linkedin.com/in/mohanraj-gopi-ios-developer"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3.5 rounded-2xl bg-[#F5F5F7] dark:bg-[#161617] text-[#1D1D1F] dark:text-[#F5F5F7] hover:bg-[#0071E3] hover:text-white transition-colors"
+                    title="LinkedIn Profile"
                   >
                     <Linkedin size={20} />
+                  </a>
+                  <a
+                    href="https://www.naukri.com/mnjuser/profile?id=&altresid"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#161617] text-[#1D1D1F] dark:text-[#F5F5F7] hover:bg-[#0071E3] hover:text-white transition-colors text-xs font-semibold"
+                    title="Naukri Profile"
+                  >
+                    <Briefcase size={18} />
+                    <span>Naukri</span>
                   </a>
                 </div>
               </div>

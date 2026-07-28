@@ -24,7 +24,8 @@ export const Footer = () => {
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-white transition-colors">Back to top ↑</a>
             <a href="https://github.com/Mohanraj-Freelancer" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a>
-            <a href="https://linkedin.com/in/mohan-raj-698756224" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/mohanraj-gopi-ios-developer" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://www.naukri.com/mnjuser/profile?id=&altresid" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Naukri</a>
           </div>
 
         </div>
