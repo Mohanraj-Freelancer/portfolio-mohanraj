@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Button } from './ui/button';
+import { Menu, X, Apple } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ThemeToggle } from './ThemeToggle';
 
 const navItems = [
+  { label: 'Home', href: '#' },
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
+  { label: 'Achievements', href: '#achievements' },
+  { label: 'Testimonials', href: '#testimonials' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -16,31 +20,45 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass border-b border-border/50' : 'bg-transparent'
-      }`}
-    >
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <a href="#" className="text-xl font-bold text-gradient">
-            MG
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 md:pt-6 transition-all duration-500 pointer-events-none">
+      <motion.nav
+        initial={{ y: -30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={`pointer-events-auto transition-all duration-500 rounded-full border shadow-apple dark:shadow-apple-dark ${
+          isScrolled
+            ? 'apple-glass py-2 px-5 md:px-7 border-black/10 dark:border-white/15 scale-95 md:scale-100'
+            : 'bg-white/60 dark:bg-black/60 apple-glass py-3 px-6 md:px-8 border-black/5 dark:border-white/10'
+        }`}
+      >
+        <div className="flex items-center gap-4 md:gap-8">
+          {/* Apple / MG Logo */}
+          <a
+            href="#"
+            className="flex items-center gap-2 text-[#1D1D1F] dark:text-[#F5F5F7] hover:text-[#0071E3] dark:hover:text-[#2997FF] transition-colors group"
+          >
+            <div className="w-7 h-7 rounded-full bg-[#1D1D1F] dark:bg-[#F5F5F7] text-white dark:text-black flex items-center justify-center font-semibold text-xs group-hover:bg-[#0071E3] dark:group-hover:bg-[#2997FF] group-hover:text-white transition-colors">
+              <Apple className="w-3.5 h-3.5 fill-current" />
+            </div>
+            <span className="font-semibold text-sm tracking-tight hidden sm:inline-block">
+              Mohanraj Gopi
+            </span>
           </a>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation Links */}
+          <ul className="hidden lg:flex items-center gap-6">
             {navItems.map((item) => (
               <li key={item.label}>
                 <a
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium"
+                  className="text-xs md:text-sm font-normal text-[#6E6E73] dark:text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-[#F5F5F7] transition-colors duration-200 tracking-tight"
                 >
                   {item.label}
                 </a>
@@ -48,47 +66,61 @@ export const Header = () => {
             ))}
           </ul>
 
-          <div className="hidden md:block">
-            <Button variant="hero" size="sm" asChild>
-              <a href="#contact">Get in Touch</a>
-            </Button>
-          </div>
+          {/* Controls & CTA */}
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-foreground"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <a
+              href="/Mohanraj_Resume.pdf"
+              download="Mohanraj_Gopi_Resume.pdf"
+              className="hidden sm:inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-medium bg-[#0071E3] hover:bg-[#0077ED] dark:bg-[#0071E3] text-white shadow-sm transition-all hover:scale-105 active:scale-95"
+            >
+              Resume
+            </a>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="lg:hidden text-[#1D1D1F] dark:text-[#F5F5F7] p-1.5 focus:outline-none"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
+      </motion.nav>
 
-        {/* Mobile Navigation */}
+      {/* Mobile Drawer */}
+      <AnimatePresence>
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 glass border-b border-border/50 animate-fade-in">
-            <ul className="flex flex-col p-6 gap-4">
-              {navItems.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-base font-medium block"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-              <li className="mt-2">
-                <Button variant="hero" className="w-full" asChild>
-                  <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
-                    Get in Touch
-                  </a>
-                </Button>
-              </li>
-            </ul>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.25 }}
+            className="pointer-events-auto absolute top-20 left-4 right-4 apple-glass rounded-3xl p-6 border border-black/10 dark:border-white/15 shadow-2xl lg:hidden flex flex-col gap-4 text-center"
+          >
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-base font-medium text-[#1D1D1F] dark:text-[#F5F5F7] py-2 border-b border-black/5 dark:border-white/5 last:border-0 hover:text-[#0071E3] transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
+            <a
+              href="/Mohanraj_Resume.pdf"
+              download="Mohanraj_Gopi_Resume.pdf"
+              className="mt-2 w-full py-3 rounded-full text-sm font-medium bg-[#0071E3] text-white text-center shadow-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Download Resume
+            </a>
+          </motion.div>
         )}
-      </nav>
+      </AnimatePresence>
     </header>
   );
 };

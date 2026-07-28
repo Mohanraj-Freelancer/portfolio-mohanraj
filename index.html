@@ -1,27 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mohanraj Gopi | iOS Developer Portfolio</title>
-    <meta name="description" content="Results-driven iOS Developer with expertise in Swift, SwiftUI, UIKit. Building scalable, user-focused iPhone applications with clean architecture." />
+    <title>Mohanraj Gopi — Senior iOS Engineer & Architect</title>
+    <meta name="description" content="Mohanraj Gopi is a Senior iOS Engineer with 4.8+ years of experience building high-performance, enterprise-grade iOS applications using Swift, SwiftUI, UIKit, and Clean Architecture." />
     <meta name="author" content="Mohanraj Gopi" />
-    <meta name="keywords" content="iOS Developer, Swift Developer, SwiftUI, UIKit, Mobile App Developer, Chennai, India" />
+    <meta name="keywords" content="Mohanraj Gopi, iOS Engineer, Swift, SwiftUI, UIKit, MVVM, Clean Architecture, iOS Developer Portfolio, Apple Style Portfolio" />
 
-    <meta property="og:title" content="Mohanraj Gopi | iOS Developer Portfolio" />
-    <meta property="og:description" content="Results-driven iOS Developer with expertise in Swift, SwiftUI, UIKit. Building scalable, user-focused iPhone applications." />
+    <!-- OpenGraph / Social Media -->
+    <meta property="og:title" content="Mohanraj Gopi — Senior iOS Engineer" />
+    <meta property="og:description" content="Building beautiful, scalable and high-performance iOS applications with Swift, SwiftUI and UIKit." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://portfolio-mohanraj-c6o0pisvq-mohanraj-freelancers-projects.vercel.app" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mohanraj Gopi | iOS Developer" />
-    <meta name="twitter:description" content="Results-driven iOS Developer with expertise in Swift, SwiftUI, UIKit." />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:title" content="Mohanraj Gopi — Senior iOS Engineer" />
+    <meta name="twitter:description" content="Building beautiful, scalable and high-performance iOS applications with Swift, SwiftUI and UIKit." />
 
-    <link rel="canonical" href="/" />
+    <!-- Fonts: Inter & JetBrains Mono for fallback -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Prevent FOUC theme flickering -->
+    <script>
+      (function() {
+        const storedTheme = localStorage.getItem('apple-portfolio-theme');
+        if (storedTheme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
 
-  <body>
+  <body class="bg-[#FFFFFF] dark:bg-[#000000] text-[#1D1D1F] dark:text-[#F5F5F7] antialiased selection:bg-[#0071E3] selection:text-white font-sans overflow-x-hidden">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
